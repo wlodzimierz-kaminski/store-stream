@@ -405,6 +405,7 @@ export async function getProducts({
   reverse?: boolean;
   sortKey?: string;
   cursor?: string;
+  page?: number;
 }): Promise<{ products: Product[]; hasNextPage: boolean; endCursor: string | null }> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,

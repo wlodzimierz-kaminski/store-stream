@@ -24,7 +24,7 @@ export default function SearchPage({
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [cursor, setCursor] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -33,7 +33,8 @@ export default function SearchPage({
         sortKey,
         reverse,
         query: searchValue,
-        cursor
+        cursor,
+        page
       });
       setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
       setCursor(endCursor || '');
@@ -42,7 +43,7 @@ export default function SearchPage({
     } finally {
       setIsLoading(false);
     }
-  }, [sortKey, reverse, searchValue, cursor]);
+  }, [sortKey, reverse, searchValue, cursor, page]);
 
   const handleScroll = useCallback(async () => {
     if (
