@@ -2,6 +2,10 @@ export type Maybe<T> = T | null;
 
 export type Connection<T> = {
   edges: Array<Edge<T>>;
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
 };
 
 export type Edge<T> = {
@@ -261,5 +265,6 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    cursor?: string;
   };
 };
